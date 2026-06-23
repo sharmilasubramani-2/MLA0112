@@ -1,5 +1,11 @@
-01 - N Queens Problem
-Pseudocode:
+Here's the clean, simple version — experiment title and pseudocode only, no extra clutter:
+
+---
+
+**01 - N Queens Problem**
+
+**Pseudocode:**
+```
 BEGIN N_QUEENS(n):
 
     Place queens one by one in each row
@@ -15,9 +21,14 @@ BEGIN N_QUEENS(n):
     RETURN False
 
 END
+```
 
-02 - Water Jug Problem
-Pseudocode:
+---
+
+**02 - Water Jug Problem**
+
+**Pseudocode:**
+```
 BEGIN WATER_JUG(start, goal):
 
     stack = [start]
@@ -34,9 +45,14 @@ BEGIN WATER_JUG(start, goal):
                 ADD new_state to stack
 
 END
+```
 
-03 - Minimax Algorithm
-Pseudocode:
+---
+
+**03 - Minimax Algorithm**
+
+**Pseudocode:**
+```
 BEGIN MINIMAX(node, depth, isMaximizing):
 
     IF depth == 0 OR node is terminal:
@@ -54,9 +70,14 @@ BEGIN MINIMAX(node, depth, isMaximizing):
         RETURN best
 
 END
+```
 
-04 - Alpha Beta Pruning
-Pseudocode:
+---
+
+**04 - Alpha Beta Pruning**
+
+**Pseudocode:**
+```
 BEGIN ALPHA_BETA(node, depth, alpha, beta, isMaximizing):
 
     IF depth == 0 OR node is terminal:
@@ -76,9 +97,14 @@ BEGIN ALPHA_BETA(node, depth, alpha, beta, isMaximizing):
         RETURN beta
 
 END
+```
 
-05 - Cryptarithmetic Problem
-Pseudocode (SEND + MORE = MONEY):
+---
+
+**05 - Cryptarithmetic Problem**
+
+**Pseudocode (SEND + MORE = MONEY):**
+```
 BEGIN CRYPTARITHMETIC():
 
     FOR each permutation of digits 0-9:
@@ -88,7 +114,10 @@ BEGIN CRYPTARITHMETIC():
                 PRINT solution
 
 END
-Pseudocode (TWO + TWO = FOUR):
+```
+
+**Pseudocode (TWO + TWO = FOUR):**
+```
 BEGIN TWO_PLUS_TWO():
 
     FOR each permutation of 6 digits from 0-9:
@@ -100,9 +129,14 @@ BEGIN TWO_PLUS_TWO():
                 PRINT solution
 
 END
+```
 
-06 - Map Coloring Problem
-Pseudocode:
+---
+
+**06 - Map Coloring Problem**
+
+**Pseudocode:**
+```
 BEGIN MAP_COLORING(graph, colors):
 
     FOR each region:
@@ -117,9 +151,14 @@ BEGIN MAP_COLORING(graph, colors):
     RETURN False
 
 END
+```
 
-07 - Missionaries and Cannibals
-Pseudocode:
+---
+
+**07 - Missionaries and Cannibals**
+
+**Pseudocode:**
+```
 BEGIN MISSIONARIES_CANNIBALS(start, goal):
 
     queue = [start]
@@ -136,9 +175,14 @@ BEGIN MISSIONARIES_CANNIBALS(start, goal):
                 ADD new_state to queue
 
 END
+```
 
-08 - Tic Tac Toe Minimax
-Pseudocode:
+---
+
+**08 - Tic Tac Toe Minimax**
+
+**Pseudocode:**
+```
 BEGIN TIC_TAC_TOE():
 
     WHILE game not over:
@@ -150,9 +194,14 @@ BEGIN TIC_TAC_TOE():
         CHECK winner
 
 END
+```
 
-09 - BFS Traversal
-Pseudocode:
+---
+
+**09 - BFS Traversal**
+
+**Pseudocode:**
+```
 BEGIN BFS(graph, start):
 
     queue = [start]
@@ -168,9 +217,14 @@ BEGIN BFS(graph, start):
                     ADD neighbor to queue
 
 END
+```
 
-10 - DFS Traversal
-Pseudocode:
+---
+
+**10 - DFS Traversal**
+
+**Pseudocode:**
+```
 BEGIN DFS(graph, start):
 
     ADD start to visited
@@ -181,9 +235,14 @@ BEGIN DFS(graph, start):
             RECURSIVELY CALL DFS(neighbor)
 
 END
+```
 
-11 - Jug Riddle Problem
-Pseudocode:
+---
+
+**11 - Jug Riddle Problem**
+
+**Pseudocode:**
+```
 BEGIN JUG_RIDDLE(start, goal):
 
     stack = [start]
@@ -200,9 +259,14 @@ BEGIN JUG_RIDDLE(start, goal):
                 ADD new_state to stack
 
 END
+```
 
-12 - Uniform Cost Search (UCS)
-Pseudocode:
+---
+
+**12 - Uniform Cost Search (UCS)**
+
+**Pseudocode:**
+```
 BEGIN UCS(graph, start, goal):
 
     frontier = [[0, [start]]]
@@ -225,9 +289,14 @@ BEGIN UCS(graph, start, goal):
             ADD [cost + edge_cost, path + neighbor] to frontier
 
 END
+```
 
-13 - A* Search
-Pseudocode:
+---
+
+**13 - A* Search**
+
+**Pseudocode:**
+```
 BEGIN A_STAR(graph, heuristic, start, goal):
 
     frontier = [[h[start], 0, [start]]]
@@ -252,9 +321,14 @@ BEGIN A_STAR(graph, heuristic, start, goal):
             ADD [new_f, new_g, path + neighbor] to frontier
 
 END
+```
 
-14 - Greedy Best First Search (GBFS)
-Pseudocode:
+---
+
+**14 - Greedy Best First Search (GBFS)**
+
+**Pseudocode:**
+```
 BEGIN GBFS(graph, heuristic, start, goal):
 
     frontier = [[h[start], [start]]]
@@ -278,9 +352,14 @@ BEGIN GBFS(graph, heuristic, start, goal):
                 ADD [h[neighbor], path + neighbor] to frontier
 
 END
+```
 
-15 - Hill Climbing
-Pseudocode:
+---
+
+**15 - Hill Climbing**
+
+**Pseudocode:**
+```
 BEGIN HILL_CLIMBING():
 
     current = start_state
@@ -305,9 +384,14 @@ BEGIN HILL_CLIMBING():
         PRINT "Goal reached"
 
 END
+```
 
-16 - Decision Tree
-Pseudocode:
+---
+
+**16 - Decision Tree**
+
+**Pseudocode:**
+```
 BEGIN DECISION_TREE(data, attributes):
 
     IF all labels same:
@@ -324,9 +408,14 @@ BEGIN DECISION_TREE(data, attributes):
         RECURSIVELY CALL DECISION_TREE(subset, remaining_attributes)
 
 END
+```
 
-17 - Depth Limited Search (DLS)
-Pseudocode:
+---
+
+**17 - Depth Limited Search (DLS)**
+
+**Pseudocode:**
+```
 BEGIN DLS(graph, start, goal, limit):
 
     CALL RECURSIVE_DLS(start, goal, limit, [start])
@@ -351,9 +440,14 @@ BEGIN RECURSIVE_DLS(node, goal, limit, path):
     RETURN False
 
 END
+```
 
-18 - Iterative Deepening Search (IDS)
-Pseudocode:
+---
+
+**18 - Iterative Deepening Search (IDS)**
+
+**Pseudocode:**
+```
 BEGIN IDS(graph, start, goal, max_depth):
 
     FOR depth = 0 TO max_depth:
@@ -385,9 +479,14 @@ BEGIN DLS(node, goal, limit, path):
     RETURN None
 
 END
+```
 
-19 - Neural Network (Backpropagation)
-Pseudocode:
+---
+
+**19 - Neural Network (Backpropagation)**
+
+**Pseudocode:**
+```
 BEGIN NEURAL_NETWORK():
 
     Initialize weights w1, w2 and biases b1, b2 randomly
@@ -421,3 +520,4 @@ BEGIN NEURAL_NETWORK():
             PRINT predicted_output
 
 END
+```
