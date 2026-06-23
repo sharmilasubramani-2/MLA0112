@@ -572,3 +572,128 @@ END
 ```
 
 <br><br>
+---
+
+## 33 - Dieting System Based on Disease
+
+```text
+BEGIN DIET_SYSTEM(disease):
+    FACT diet(disease_type, recommended_foods, restricted_foods)
+    MATCH diet(disease, rec, rest)
+    PRINT "Eat:", rec
+    PRINT "Avoid:", rest
+END
+```
+
+<br><br>
+
+---
+
+## 34 - Monkey Banana Problem
+
+```text
+BEGIN MONKEY_BANANA():
+    STATE = [monkey_loc, box_loc, banana_loc, has_banana]
+    ACTIONS = [move, drag_box, climb_box, grasp_banana]
+    WHILE state does not contain has_banana == True:
+        Select valid action from ACTIONS
+        Update STATE
+    RETURN path_of_actions
+END
+```
+
+<br><br>
+
+---
+
+## 35 - Fruit and its Color Using Backtracking
+
+```text
+BEGIN FRUIT_COLOR_BACKTRACKING():
+    FACT fruit_color(apple, red)
+    FACT fruit_color(banana, yellow)
+    QUERY find_fruit_by_color(target_color):
+        FOR each fruit match:
+            IF fruit_color == target_color:
+                PRINT fruit
+            ELSE:
+                BACKTRACK to try next fruit resource
+END
+```
+
+<br><br>
+
+---
+
+## 36 - Best First Search Algorithm
+
+```text
+BEGIN BEST_FIRST_SEARCH(graph, start, goal, heuristic):
+    open_list = [start] sorted by heuristic
+    closed_list = []
+    WHILE open_list not empty:
+        current = open_list.pop(0)
+        IF current == goal:
+            RETURN path
+        ADD current to closed_list
+        FOR each neighbor of current:
+            IF neighbor not in closed_list or open_list:
+                ADD neighbor to open_list
+        Sort open_list by heuristic value
+END
+```
+
+<br><br>
+
+---
+
+## 37 - Medical Diagnosis System
+
+```text
+BEGIN MEDICAL_DIAGNOSIS(patient_symptoms):
+    FACT symptom_disease_match(symptoms, disease_name)
+    FOR each disease in system:
+        IF patient_symptoms match database:
+            PRINT "Possible Diagnosis:", disease_name
+END
+```
+
+<br><br>
+
+---
+
+## 38 - Forward Chaining
+
+```text
+BEGIN FORWARD_CHAINING(facts, rules):
+    WHILE new facts are added:
+        FOR each rule in rules:
+            IF premises of rule match facts AND conclusion not in facts:
+                ADD conclusion to facts
+    RETURN facts
+END
+```
+
+<br><br>
+
+---
+
+## 39 - Backward Chaining
+
+```text
+BEGIN BACKWARD_CHAINING(goal, facts, rules):
+    IF goal in facts:
+        RETURN True
+    FOR each rule where conclusion == goal:
+        all_premises_true = True
+        FOR each premise in rule:
+            IF NOT BACKWARD_CHAINING(premise, facts, rules):
+                all_premises_true = False
+                BREAK
+        IF all_premises_true:
+            RETURN True
+    RETURN False
+END
+```
+
+<br><br>
