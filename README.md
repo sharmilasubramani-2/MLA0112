@@ -1,7 +1,3 @@
-Here's the clean, simple version — experiment title and pseudocode only, no extra clutter:
-
----
-
 **01 - N Queens Problem**
 
 **Pseudocode:**
