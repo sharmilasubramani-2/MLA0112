@@ -457,9 +457,6 @@ END
 
 ---
 
-<h2>20 - AI Programs Completed</h2>
-
-> **Note:** Based on the content you shared, the AI pseudocode section ends at **Question 19**. There is **no Question 20** in your document. The next section begins with **Part 2: Prolog Lab Pseudocode (Question 26)**.
 
 <br><br>
 # Part 2: Prolog Lab Pseudocode
