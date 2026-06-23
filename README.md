@@ -417,3 +417,67 @@ subset = rows where best_attr == value
 RECURSIVELY build_tree(subset, remaining_attributes)
 
 END
+17 - Depth Limited Search
+BEGIN DLS(graph, start, goal, limit):
+  CALL recursive_dls(start, goal, limit, [start])
+
+BEGIN recursive_dls(node, goal, limit, path):
+  PRINT node
+  IF node == goal: PRINT path; RETURN True
+  IF limit == 0: RETURN False
+  FOR each neighbor of node:
+    IF neighbor not in path:
+      CALL recursive_dls(neighbor, goal, limit-1, path+neighbor)
+      IF result True: RETURN True
+  RETURN False
+END
+
+18 - Iterative Deepening Search
+BEGIN IDS(graph, start, goal, max_depth):
+  FOR depth = 0 to max_depth:
+    PRINT "Iteration depth"
+    result = DLS(start, goal, depth, [start])
+    IF result found: PRINT path; RETURN
+    PRINT "Not found at this depth"
+  PRINT "Goal not found"
+END
+
+BEGIN DLS(node, goal, limit, path):
+  IF node == goal: RETURN path
+  IF limit == 0: RETURN None
+  FOR each neighbor of node:
+    IF neighbor not in path:
+      result = DLS(neighbor, goal, limit-1, path+neighbor)
+      IF result: RETURN result
+  RETURN None
+END
+
+19 - Neural Network
+BEGIN NEURAL_NETWORK():
+  Initialize weights w1, w2 and biases b1, b2 randomly
+
+  FORWARD PASS:
+    FOR each hidden neuron:
+      total = bias + SUM(input * weight)
+      hidden = sigmoid(total)
+    total = bias + SUM(hidden * weight)
+    output = sigmoid(total)
+
+  BACKPROPAGATION:
+    output_error = target - output
+    output_delta = output_error * sigmoid_derivative(output)
+    FOR each hidden neuron:
+      hidden_error = output_delta * weight
+      hidden_delta = hidden_error * sigmoid_derivative(hidden)
+    UPDATE output weights += learning_rate * output_delta * hidden
+    UPDATE hidden weights += learning_rate * hidden_delta * input
+
+  TRAINING:
+    FOR 10000 epochs:
+      FOR each input in dataset:
+        CALL forward pass
+        CALL backpropagation
+
+  TESTING:
+    FOR each input: PRINT predicted output
+END
