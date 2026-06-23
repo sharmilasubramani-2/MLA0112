@@ -1,4 +1,6 @@
----
+# Artificial Intelligence & Prolog Lab
+
+## Part 1: AI Pseudocode
 
 <h2>01 - N Queens Problem</h2>
 
