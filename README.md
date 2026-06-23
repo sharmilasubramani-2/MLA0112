@@ -1,600 +1,285 @@
- Pseudocode
-
-### 01 - N Queens Problem
-
-```
-
-BEGIN N_QUEENS(n):
-
-```
-Place queens one by one in each row
-
-FOR each column in current row:
-    IF queen is safe (no attack):
-        Place queen
-        RECURSIVELY solve next row
-        IF solution found:
-            RETURN True
-        Remove queen (backtrack)
-
-RETURN False
-
-```
-
-END
-
-```
-
-### 02 - Water Jug Problem
-
-```
-
-BEGIN WATER_JUG(start, goal):
-
-```
-stack = [start]
-visited = []
-
-WHILE stack not empty:
-    state = stack.pop()
-    IF state == goal:
-        RETURN path
-
-    FOR each possible action (fill, empty, pour):
-        new_state = apply action
-        IF new_state not visited:
-            ADD new_state to stack
-
-```
-
-END
-
-```
-
-### 03 - Minimax Algorithm
-
-```
-
-BEGIN MINIMAX(node, depth, isMaximizing):
-
-```
-IF depth == 0 OR node is terminal:
-    RETURN score
-
-IF isMaximizing:
-    best = -infinity
-    FOR each child:
-        best = MAX(best, MINIMAX(child, depth-1, False))
-    RETURN best
-ELSE:
-    best = +infinity
-    FOR each child:
-        best = MIN(best, MINIMAX(child, depth-1, True))
-    RETURN best
-
-```
-
-END
-
-```
-
-### 04 - Alpha Beta Pruning
-
-```
-
-BEGIN ALPHA_BETA(node, depth, alpha, beta, isMaximizing):
-
-```
-IF depth == 0 OR node is terminal:
-    RETURN score
-
-IF isMaximizing:
-    FOR each child:
-        alpha = MAX(alpha, ALPHA_BETA(child, depth-1, alpha, beta, False))
-        IF alpha >= beta:
-            BREAK (prune)
-    RETURN alpha
-ELSE:
-    FOR each child:
-        beta = MIN(beta, ALPHA_BETA(child, depth-1, alpha, beta, True))
-        IF beta <= alpha:
-            BREAK (prune)
-    RETURN beta
-
-```
-
-END
-
-```
-
-### 05 - Cryptarithmetic Problem
-**SEND + MORE = MONEY**
-
-```
-
-BEGIN CRYPTARITHMETIC():
-
-```
-FOR each permutation of digits 0-9:
-    Assign digits to letters
-    IF leading digits != 0:
-        IF equation holds:
-            PRINT solution
-
-```
-
-END
-
-```
-
-**TWO + TWO = FOUR**
-
-```
-
-BEGIN TWO_PLUS_TWO():
-
-```
-FOR each permutation of 6 digits from 0-9:
-    Assign T, W, O, F, U, R
-    IF T != 0 AND F != 0:
-        TWO = T*100 + W*10 + O
-        FOUR = F*1000 + O*100 + U*10 + R
-        IF TWO + TWO == FOUR:
-            PRINT solution
-
-```
-
-END
-
-```
-
-### 06 - Map Coloring Problem
-
-```
-
-BEGIN MAP_COLORING(graph, colors):
-
-```
-FOR each region:
-    FOR each color:
-        IF no adjacent region has same color:
-            Assign color
-            RECURSIVELY color next region
-            IF solution found:
-                RETURN True
-            Remove color (backtrack)
-
-RETURN False
-
-```
-
-END
-
-```
-
-### 07 - Missionaries and Cannibals
-
-```
-
-BEGIN MISSIONARIES_CANNIBALS(start, goal):
-
-```
-queue = [start]
-visited = []
-
-WHILE queue not empty:
-    state = queue.pop(0)
-    IF state == goal:
-        RETURN path
-
-    FOR each valid move:
-        new_state = apply move
-        IF new_state is safe AND not visited:
-            ADD new_state to queue
-
-```
-
-END
-
-```
-
-### 08 - Tic Tac Toe Minimax
-
-```
-
-BEGIN TIC_TAC_TOE():
-
-```
-WHILE game not over:
-    IF human turn:
-        GET human move
-    IF AI turn:
-        best_move = MINIMAX(board, True)
-        Apply best_move
-    CHECK winner
-
-```
-
-END
-
-```
-
-### 09 - BFS Traversal
-
-```
-
-BEGIN BFS(graph, start):
-
-```
-queue = [start]
-visited = []
-
-WHILE queue not empty:
-    node = queue.pop(0)
-    IF node not visited:
-        ADD node to visited
-        PRINT node
-        FOR each neighbor of node:
-            IF neighbor not visited:
-                ADD neighbor to queue
-
-```
-
-END
-
-```
-
-### 10 - DFS Traversal
-
-```
-
-BEGIN DFS(graph, start):
-
-```
-ADD start to visited
-PRINT start
-
-FOR each neighbor of start:
-    IF neighbor not visited:
-        RECURSIVELY CALL DFS(neighbor)
-
-```
-
-END
-
-```
-
-### 11 - Jug Riddle Problem
-
-```
-
-BEGIN JUG_RIDDLE(start, goal):
-
-```
-stack = [start]
-visited = []
-
-WHILE stack not empty:
-    state = stack.pop()
-    IF state == goal:
-        RETURN path
-
-    FOR each valid move:
-        new_state = apply move
-        IF new_state not visited:
-            ADD new_state to stack
-
-```
-
-END
-
-```
-
-### 12 - Uniform Cost Search (UCS)
-
-```
-
-BEGIN UCS(graph, start, goal):
-
-```
-frontier = [[0, [start]]]
-visited = []
-
-WHILE frontier not empty:
-    Sort frontier by cost
-    cost, path = frontier.pop(0)
-    node = last node in path
-
-    IF node in visited:
-        CONTINUE
-    ADD node to visited
-
-    IF node == goal:
-        PRINT path, cost
-        RETURN
-
-    FOR each neighbor, edge_cost of node:
-        ADD [cost + edge_cost, path + neighbor] to frontier
-
-```
-
-END
-
-```
-
-### 13 - A* Search
-
-```
-
-BEGIN A_STAR(graph, heuristic, start, goal):
-
-```
-frontier = [[h[start], 0, [start]]]
-visited = []
-
-WHILE frontier not empty:
-    Sort frontier by f value
-    f, g, path = frontier.pop(0)
-    node = last node in path
-
-    IF node in visited:
-        CONTINUE
-    ADD node to visited
-
-    IF node == goal:
-        PRINT path, cost
-        RETURN
-
-    FOR each neighbor, cost of node:
-        new_g = g + cost
-        new_f = new_g + h[neighbor]
-        ADD [new_f, new_g, path + neighbor] to frontier
-
-```
-
-END
-
-```
-
-### 14 - Greedy Best First Search (GBFS)
-
-```
-
-BEGIN GBFS(graph, heuristic, start, goal):
-
-```
-frontier = [[h[start], [start]]]
-visited = []
-
-WHILE frontier not empty:
-    Sort frontier by h value
-    h_val, path = frontier.pop(0)
-    node = last node in path
-
-    IF node in visited:
-        CONTINUE
-    ADD node to visited
-
-    IF node == goal:
-        PRINT path
-        RETURN
-
-    FOR each neighbor of node:
-        IF neighbor not visited:
-            ADD [h[neighbor], path + neighbor] to frontier
-
-```
-
-END
-
-```
-
-### 15 - Hill Climbing
-
-```
-
-BEGIN HILL_CLIMBING():
-
-```
-current = start_state
-
-WHILE current != goal:
-    best = None
-    best_score = SCORE(current)
-
-    FOR each possible swap:
-        new_state = apply swap
-        IF SCORE(new_state) > best_score:
-            best = new_state
-
-    IF best is None:
-        PRINT "Local max"
-        BREAK
-
-    current = best
-    PRINT current
-
-IF current == goal:
-    PRINT "Goal reached"
-
-```
-
-END
-
-```
-
-### 16 - Decision Tree
-
-```
-
-BEGIN DECISION_TREE(data, attributes):
-
-```
-IF all labels same:
-    RETURN leaf node
-
-IF no attributes remaining:
-    RETURN majority label
-
-best_attr = attribute with highest Information Gain
-PRINT best_attr
-
-FOR each value of best_attr:
-    subset = rows where best_attr == value
-    RECURSIVELY CALL DECISION_TREE(subset, remaining_attributes)
-
-```
-
-END
-
-```
-
-### 17 - Depth Limited Search (DLS)
-
-```
-
-BEGIN DLS(graph, start, goal, limit):
-
-```
-CALL RECURSIVE_DLS(start, goal, limit, [start])
-
-```
-
-BEGIN RECURSIVE_DLS(node, goal, limit, path):
-
-```
-PRINT node
-
-IF node == goal:
-    PRINT path
-    RETURN True
-
-IF limit == 0:
-    RETURN False
-
-FOR each neighbor of node:
-    IF neighbor not in path:
-        result = RECURSIVE_DLS(neighbor, goal, limit-1, path + neighbor)
-        IF result == True:
-            RETURN True
-
-RETURN False
-
-```
-
-END
-
-```
-
-### 18 - Iterative Deepening Search (IDS)
-
-```
-
-BEGIN IDS(graph, start, goal, max_depth):
-
-```
-FOR depth = 0 TO max_depth:
-    PRINT "Iteration at depth", depth
-    result = DLS(start, goal, depth, [start])
-    IF result is found:
-        PRINT path
-        RETURN
-    PRINT "Not found at this depth"
-
-PRINT "Goal not found"
-
-```
-
-END
-
-BEGIN DLS(node, goal, limit, path):
-
-```
-IF node == goal:
-    RETURN path
-
-IF limit == 0:
-    RETURN None
-
-FOR each neighbor of node:
-    IF neighbor not in path:
-        result = DLS(neighbor, goal, limit-1, path + neighbor)
-        IF result is not None:
-            RETURN result
-
-RETURN None
-
-```
-
-END
-
-```
-
-### 19 - Neural Network (Backpropagation)
-
-```
-
-BEGIN NEURAL_NETWORK():
-
-```
-Initialize weights w1, w2 and biases b1, b2 randomly
-
-FORWARD PASS:
-    FOR each hidden neuron:
-        total = bias + SUM(input * weight)
-        hidden = SIGMOID(total)
-    total = bias + SUM(hidden * weight)
-    output = SIGMOID(total)
-
-BACKPROPAGATION:
-    output_error = target - output
-    output_delta = output_error * SIGMOID_DERIVATIVE(output)
-
-    FOR each hidden neuron:
-        hidden_error = output_delta * weight
-        hidden_delta = hidden_error * SIGMOID_DERIVATIVE(hidden)
-
-    UPDATE output_weights += learning_rate * output_delta * hidden
-    UPDATE hidden_weights += learning_rate * hidden_delta * input
-
-TRAINING:
-    FOR 10000 epochs:
-        FOR each input in dataset:
-            CALL forward_pass
-            CALL backpropagation
-
-TESTING:
-    FOR each input:
-        PRINT predicted_output
-
-```
-
-END
-
-```
+# Artificial Intelligence & Prolog Lab
 
 ---
 
-##  Prolog Lab Programs (26–39)
+## Part 1: AI Pseudocode
 
-This section contains SWI-Prolog implementations for various logic puzzles, databases, and search problems.
+### 01 - N Queens Problem
+```text
+BEGIN N_QUEENS(n):
+    Place queens one by one in each row
+    FOR each column in current row:
+        IF queen is safe (no attack):
+            Place queen
+            RECURSIVELY solve next row
+            IF solution found:
+                RETURN True
+            Remove queen (backtrack)
+    RETURN False
+END
+02 - Water Jug ProblemPlaintextBEGIN WATER_JUG(start, goal):
+    stack = [start]
+    visited = []
+    WHILE stack not empty:
+        state = stack.pop()
+        IF state == goal:
+            RETURN path
+        FOR each possible action (fill, empty, pour):
+            new_state = apply action
+            IF new_state not visited:
+                ADD new_state to stack
+END
+03 - Minimax AlgorithmPlaintextBEGIN MINIMAX(node, depth, isMaximizing):
+    IF depth == 0 OR node is terminal:
+        RETURN score
+    IF isMaximizing:
+        best = -infinity
+        FOR each child:
+            best = MAX(best, MINIMAX(child, depth-1, False))
+        RETURN best
+    ELSE:
+        best = +infinity
+        FOR each child:
+            best = MIN(best, MINIMAX(child, depth-1, True))
+        RETURN best
+END
+04 - Alpha Beta PruningPlaintextBEGIN ALPHA_BETA(node, depth, alpha, beta, isMaximizing):
+    IF depth == 0 OR node is terminal:
+        RETURN score
+    IF isMaximizing:
+        FOR each child:
+            alpha = MAX(alpha, ALPHA_BETA(child, depth-1, alpha, beta, False))
+            IF alpha >= beta:
+                BREAK (prune)
+        RETURN alpha
+    ELSE:
+        FOR each child:
+            beta = MIN(beta, ALPHA_BETA(child, depth-1, alpha, beta, True))
+            IF beta <= alpha:
+                BREAK (prune)
+        RETURN beta
+END
+05 - Cryptarithmetic ProblemSEND + MORE = MONEYPlaintextBEGIN CRYPTARITHMETIC():
+    FOR each permutation of digits 0-9:
+        Assign digits to letters
+        IF leading digits != 0:
+            IF equation holds:
+                PRINT solution
+END
+TWO + TWO = FOURPlaintextBEGIN TWO_PLUS_TWO():
+    FOR each permutation of 6 digits from 0-9:
+        Assign T, W, O, F, U, R
+        IF T != 0 AND F != 0:
+            TWO = T*100 + W*10 + O
+            FOUR = F*1000 + O*100 + U*10 + R
+            IF TWO + TWO == FOUR:
+                PRINT solution
+END
+06 - Map Coloring ProblemPlaintextBEGIN MAP_COLORING(graph, colors):
+    FOR each region:
+        FOR each color:
+            IF no adjacent region has same color:
+                Assign color
+                RECURSIVELY color next region
+                IF solution found:
+                    RETURN True
+                Remove color (backtrack)
+    RETURN False
+END
+07 - Missionaries and CannibalsPlaintextBEGIN MISSIONARIES_CANNIBALS(start, goal):
+    queue = [start]
+    visited = []
+    WHILE queue not empty:
+        state = queue.pop(0)
+        IF state == goal:
+            RETURN path
+        FOR each valid move:
+            new_state = apply move
+            IF new_state is safe AND not visited:
+                ADD new_state to queue
+END
+08 - Tic Tac Toe MinimaxPlaintextBEGIN TIC_TAC_TOE():
+    WHILE game not over:
+        IF human turn:
+            GET human move
+        IF AI turn:
+            best_move = MINIMAX(board, True)
+            Apply best_move
+        CHECK winner
+END
+09 - BFS TraversalPlaintextBEGIN BFS(graph, start):
+    queue = [start]
+    visited = []
+    WHILE queue not empty:
+        node = queue.pop(0)
+        IF node not visited:
+            ADD node to visited
+            PRINT node
+            FOR each neighbor of node:
+                IF neighbor not visited:
+                    ADD neighbor to queue
+END
+10 - DFS TraversalPlaintextBEGIN DFS(graph, start):
+    ADD start to visited
+    PRINT start
+    FOR each neighbor of start:
+        IF neighbor not visited:
+            RECURSIVELY CALL DFS(neighbor)
+END
+11 - Jug Riddle ProblemPlaintextBEGIN JUG_RIDDLE(start, goal):
+    stack = [start]
+    visited = []
+    WHILE stack not empty:
+        state = stack.pop()
+        IF state == goal:
+            RETURN path
+        FOR each valid move:
+            new_state = apply move
+            IF new_state not visited:
+                ADD new_state to stack
+END
+12 - Uniform Cost Search (UCS)PlaintextBEGIN UCS(graph, start, goal):
+    frontier = [[0, [start]]]
+    visited = []
+    WHILE frontier not empty:
+        Sort frontier by cost
+        cost, path = frontier.pop(0)
+        node = last node in path
+        IF node in visited:
+            CONTINUE
+        ADD node to visited
+        IF node == goal:
+            PRINT path, cost
+            RETURN
+        FOR each neighbor, edge_cost of node:
+            ADD [cost + edge_cost, path + neighbor] to frontier
+END
+13 - A* SearchPlaintextBEGIN A_STAR(graph, heuristic, start, goal):
+    frontier = [[h[start], 0, [start]]]
+    visited = []
+    WHILE frontier not empty:
+        Sort frontier by f value
+        f, g, path = frontier.pop(0)
+        node = last node in path
+        IF node in visited:
+            CONTINUE
+        ADD node to visited
+        IF node == goal:
+            PRINT path, cost
+            RETURN
+        FOR each neighbor, cost of node:
+            new_g = g + cost
+            new_f = new_g + h[neighbor]
+            ADD [new_f, new_g, path + neighbor] to frontier
+END
+14 - Greedy Best First Search (GBFS)PlaintextBEGIN GBFS(graph, heuristic, start, goal):
+    frontier = [[h[start], [start]]]
+    visited = []
+    WHILE frontier not empty:
+        Sort frontier by h value
+        h_val, path = frontier.pop(0)
+        node = last node in path
+        IF node in visited:
+            CONTINUE
+        ADD node to visited
+        IF node == goal:
+            PRINT path
+            RETURN
+        FOR each neighbor of node:
+            IF neighbor not visited:
+                ADD [h[neighbor], path + neighbor] to frontier
+END
+15 - Hill ClimbingPlaintextBEGIN HILL_CLIMBING():
+    current = start_state
+    WHILE current != goal:
+        best = None
+        best_score = SCORE(current)
+        FOR each possible swap:
+            new_state = apply swap
+            IF SCORE(new_state) > best_score:
+                best = new_state
+        IF best is None:
+            PRINT "Local max"
+            BREAK
+        current = best
+        PRINT current
+    IF current == goal:
+        PRINT "Goal reached"
+END
+16 - Decision TreePlaintextBEGIN DECISION_TREE(data, attributes):
+    IF all labels same:
+        RETURN leaf node
+    IF no attributes remaining:
+        RETURN majority label
+    best_attr = attribute with highest Information Gain
+    PRINT best_attr
+    FOR each value of best_attr:
+        subset = rows where best_attr == value
+        RECURSIVELY CALL DECISION_TREE(subset, remaining_attributes)
+END
+17 - Depth Limited Search (DLS)PlaintextBEGIN DLS(graph, start, goal, limit):
+    CALL RECURSIVE_DLS(start, goal, limit, [start])
 
-| File | Program |
-| :--- | :--- |
-| `26_sum_1_to_n.pl` | Sum of integers from 1 to n |
-| `27_db_name_dob.pl` | DB with Name, DOB |
-| `28_student_teacher_subcode.pl` | Student-Teacher-Sub-Code DB |
-| `29_planets_db.pl` | Planets DB |
-| `30_towers_of_hanoi.pl` | Towers of Hanoi |
-| `31_bird_can_fly.pl` | Bird can fly or not |
-| `32_family_tree.pl` | Family tree |
-| `33_diet_system.pl` | Dieting system based on disease |
-| `34_monkey_banana.pl` | Monkey Banana Problem |
-| `35_fruit_color_backtracking.pl` | Fruit and its color using backtracking |
-| `36_best_first_search.pl` | Best First Search algorithm |
-| `37_medical_diagnosis.pl` | Medical Diagnosis |
-| `38_forward_chaining.pl` | Forward Chaining |
-| `39_backward_chaining.pl` | Backward Chaining |
+BEGIN RECURSIVE_DLS(node, goal, limit, path):
+    PRINT node
+    IF node == goal:
+        PRINT path
+        RETURN True
+    IF limit == 0:
+        RETURN False
+    FOR each neighbor of node:
+        IF neighbor not in path:
+            result = RECURSIVE_DLS(neighbor, goal, limit-1, path + neighbor)
+            IF result == True:
+                RETURN True
+    RETURN False
+END
+18 - Iterative Deepening Search (IDS)PlaintextBEGIN IDS(graph, start, goal, max_depth):
+    FOR depth = 0 TO max_depth:
+        PRINT "Iteration at depth", depth
+        result = DLS(start, goal, depth, [start])
+        IF result is found:
+            PRINT path
+            RETURN
+        PRINT "Not found at this depth"
+    PRINT "Goal not found"
+END
 
-```
-
+BEGIN DLS(node, goal, limit, path):
+    IF node == goal:
+        RETURN path
+    IF limit == 0:
+        RETURN None
+    FOR each neighbor of node:
+        IF neighbor not in path:
+            result = DLS(neighbor, goal, limit-1, path + neighbor)
+            IF result is not None:
+                RETURN result
+    RETURN None
+END
+19 - Neural Network (Backpropagation)PlaintextBEGIN NEURAL_NETWORK():
+    Initialize weights w1, w2 and biases b1, b2 randomly
+    FORWARD PASS:
+        FOR each hidden neuron:
+            total = bias + SUM(input * weight)
+            hidden = SIGMOID(total)
+        total = bias + SUM(hidden * weight)
+        output = SIGMOID(total)
+    BACKPROPAGATION:
+        output_error = target - output
+        output_delta = output_error * SIGMOID_DERIVATIVE(output)
+        FOR each hidden neuron:
+            hidden_error = output_delta * weight
+            hidden_delta = hidden_error * SIGMOID_DERIVATIVE(hidden)
+        UPDATE output_weights += learning_rate * output_delta * hidden
+        UPDATE hidden_weights += learning_rate * hidden_delta * input
+    TRAINING:
+        FOR 10000 epochs:
+            FOR each input in dataset:
+                CALL forward_pass
+                CALL backpropagation
+    TESTING:
+        FOR each input:
+            PRINT predicted_output
+END
+Part 2: Prolog Lab Programs (26–39)This section contains SWI-Prolog implementations for various logic puzzles, databases, and search problems.FileProgram26_sum_1_to_n.plSum of integers from 1 to n27_db_name_dob.plDB with Name, DOB28_student_teacher_subcode.plStudent-Teacher-Sub-Code DB29_planets_db.plPlanets DB30_towers_of_hanoi.plTowers of Hanoi31_bird_can_fly.plBird can fly or not32_family_tree.plFamily tree33_diet_system.plDieting system based on disease34_monkey_banana.plMonkey Banana Problem35_fruit_color_backtracking.plFruit and its color using backtracking36_best_first_search.plBest First Search algorithm37_medical_diagnosis.plMedical Diagnosis38_forward_chaining.plForward Chaining39_backward_chaining.plBackward Chaining
